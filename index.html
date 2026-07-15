@@ -3,29 +3,24 @@
  <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>忘本记录查询</title>
+  <标题>忘本记录查询</标题>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <样式>
+  <style>
   body{background:linear-gradient(#ff00b0,#0067ff);
        height:100vh; margin:0;}
   .shuru{background-color:#ffffff;
          border-color:#000000; border-width:1px;
-
-显示:块级元素; 上边距:79px 自动 0;
-圆角:5px}
-.zi1{颜色:#0086ff;
+display:block; margin:79px auto 0;
+border-radius:5px}
+.zi1{color:#0086ff;
        text-align:center; font-size:42px;
        margin-top:50px;}
   .zi2{color:#008aff;
-       text-align:center; font-size:12px;
-
+       text-align:center; font-size:12px;}
   .cha{background:linear-gradient(45deg,#ffad00,#ff00ed);
        border:none;
-高度:30px; 宽度:50px;
-
-显示:块级元素;
-
-
+height:30px; width:50px;
+display:block;
   }
   </style>
  
@@ -36,7 +31,7 @@
   <div class="zi2">如果查到忘本的话可以让他亲吻大地🤓☝️</div>
   <div class="zi2">主播主播莉莉带伞咋办？那就给他撇虚空里或玩之前就给他踢了😡</div>
   <input type="text" class="shuru" id="inputId" placeholder="输入ID">
-   类="cha" onclick="searchData)">查询</按钮>
+   <button class="cha" onclick="searchData()">查询</button>
 
 <script>
 const SUPABASE_URL = "https://wshtjosulvxukiwznqsg.supabase.co";
@@ -46,19 +41,19 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 async function searchData(){
   const inputDom = document.getElementById("inputId");
   const inputVal = inputDom.value.trim();
-  如果
-    (“请输入ID再查询！”);
-    返回;
+  if(!inputVal){
+    alert("请输入ID再查询！");
+    return;
   }
   const {data,error} = await supabase.from("allow_ids").select("*").eq("target_id",inputVal);
-  如果(错误){
-    警告("查询出错："+错误.消息);
-    返回;
+  if(error){
+    alert("查询出错："+error.message);
+    return;
   }
-  如果(数据.长度>0){
-    警告("注意！此ID有忘本记录");
-  }否则{
-    警告("此ID未录入数据库，但不能放松警惕");
+  if(data.length>0){
+    alert("注意！此ID有忘本记录");
+  }else{
+    alert("此ID未录入数据库，但不能放松警惕");
   }
 }
 </script>
