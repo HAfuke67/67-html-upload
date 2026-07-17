@@ -65,19 +65,19 @@
       if(window.supabase){
         supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
       }else{
-        alert("Supabase数据库加载失败！网络问题，请刷新页面");
+        alert("数据库加载失败！请刷新页面，若无法解决请加Q:3770893141反馈问题");
       }
     }
 
     async function searchData(){
       if(!supabase){
-        alert("数据库组件未加载完成，请等待几秒再点查询！");
+        alert("数据库未加载完成，等待几秒再查询");
         return;
       }
       const inputDom = document.getElementById("inputId");
       const inputVal = inputDom.value.trim();
       if(!inputVal){
-        alert("请输入ID再查询！");
+        alert("请输入ID再查询");
         return;
       }
       try{
